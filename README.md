@@ -31,7 +31,6 @@ A Flutter-friendly, one-stop YouTube URL processor. Parse, normalize, build URLs
 ```yaml
 dependencies:
   youtube_url_processor: ^0.1.0
-  http: ^1.2.1
 ```
 
 ## Quick start
