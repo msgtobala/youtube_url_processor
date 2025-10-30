@@ -1,6 +1,6 @@
 name: youtube_url_processor
 description: "One-stop YouTube URL processor: parse, normalize, thumbnails, metadata, widgets."
-version: 0.1.0
+version: 0.1.2
 homepage: https://github.com/msgtobala/youtube_url_processor
 repository: https://github.com/msgtobala/youtube_url_processor
 issue_tracker: https://github.com/msgtobala/youtube_url_processor/issues

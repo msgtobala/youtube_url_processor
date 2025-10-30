@@ -1,3 +1,4 @@
+/// The type of content identified by a YouTube URL.
 enum YouTubeContentType {
   video,
   short,
@@ -8,6 +9,7 @@ enum YouTubeContentType {
   unknown,
 }
 
+/// A reference to a YouTube video with optional time bounds and playlist info.
 class VideoRef {
   final String videoId;
   final Duration? startAt;
@@ -28,6 +30,7 @@ class VideoRef {
   });
 }
 
+/// A reference to a YouTube playlist.
 class PlaylistRef {
   final String playlistId;
   final String? currentVideoId;
@@ -42,6 +45,7 @@ class PlaylistRef {
   });
 }
 
+/// A reference to a YouTube channel (id, handle, vanity or legacy user).
 class ChannelRef {
   final String? channelId;
   final String? handle;
@@ -51,6 +55,7 @@ class ChannelRef {
   const ChannelRef({this.channelId, this.handle, this.vanity, this.legacyUser});
 }
 
+/// A reference to a YouTube clip and its optional source video.
 class ClipRef {
   final String clipId;
   final String? sourceVideoId;
@@ -58,6 +63,7 @@ class ClipRef {
   const ClipRef({required this.clipId, this.sourceVideoId});
 }
 
+/// The normalized entity extracted from a YouTube URL.
 class ExtractedEntity {
   final YouTubeContentType type;
   final VideoRef? video;
@@ -114,5 +120,3 @@ class ExtractedEntity {
         channel = null,
         clip = null;
 }
-
-

@@ -1,5 +1,6 @@
 import '../models/errors.dart';
 
+/// Basic information about a YouTube video.
 class VideoMetadata {
   final String id;
   final String title;
@@ -11,6 +12,7 @@ class VideoMetadata {
   final bool isLive;
   final bool isUpcoming;
 
+  /// Creates a [VideoMetadata] instance.
   const VideoMetadata({
     required this.id,
     required this.title,
@@ -24,12 +26,14 @@ class VideoMetadata {
   });
 }
 
+/// Basic information about a YouTube playlist.
 class PlaylistMetadata {
   final String id;
   final String title;
   final String description;
   final int? itemCount;
 
+  /// Creates a [PlaylistMetadata] instance.
   const PlaylistMetadata({
     required this.id,
     required this.title,
@@ -38,12 +42,14 @@ class PlaylistMetadata {
   });
 }
 
+/// Basic information about a YouTube channel.
 class ChannelMetadata {
   final String id;
   final String title;
   final String description;
   final int? subscriberCount;
 
+  /// Creates a [ChannelMetadata] instance.
   const ChannelMetadata({
     required this.id,
     required this.title,
@@ -52,21 +58,34 @@ class ChannelMetadata {
   });
 }
 
+/// A single item (video) within a playlist.
 class PlaylistItem {
   final String videoId;
   final String title;
   final int index;
 
-  const PlaylistItem({required this.videoId, required this.title, required this.index});
+  /// Creates a [PlaylistItem] with positional [index] within the playlist.
+  const PlaylistItem(
+      {required this.videoId, required this.title, required this.index});
 }
 
+/// Interface for retrieving metadata via the YouTube Data API.
 abstract class YouTubeDataApi {
+  /// Fetch metadata for a video by its [videoId].
   Future<VideoMetadata> getVideo(String videoId);
+
+  /// Fetch metadata for a playlist by its [playlistId].
   Future<PlaylistMetadata> getPlaylist(String playlistId);
+
+  /// Fetch metadata for a channel by its [channelId].
   Future<ChannelMetadata> getChannel(String channelId);
+
+  /// Stream the items within a playlist, optionally paging with [pageSize].
   Stream<PlaylistItem> getPlaylistItems(String playlistId, {int pageSize = 50});
 }
 
+/// Default implementation used when no API client is configured. All calls
+/// throw an [ApiError] to signal that the feature is unavailable.
 class NotConfiguredYouTubeDataApi implements YouTubeDataApi {
   const NotConfiguredYouTubeDataApi();
 
@@ -82,9 +101,8 @@ class NotConfiguredYouTubeDataApi implements YouTubeDataApi {
   Future<ChannelMetadata> getChannel(String channelId) async => _err();
 
   @override
-  Stream<PlaylistItem> getPlaylistItems(String playlistId, {int pageSize = 50}) async* {
+  Stream<PlaylistItem> getPlaylistItems(String playlistId,
+      {int pageSize = 50}) async* {
     _err();
   }
 }
-
-

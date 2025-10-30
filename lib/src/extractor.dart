@@ -4,9 +4,14 @@ import 'models/entities.dart';
 import 'models/results.dart';
 import 'parsing/url_patterns.dart';
 
+/// Extracts and normalizes entities from YouTube URLs.
 class YouTubeUrlExtractor {
   const YouTubeUrlExtractor();
 
+  /// Parse [inputUrl] and return a normalized [ExtractedEntity].
+  ///
+  /// Returns a failed [ParseResult] with a human-readable message when the URL
+  /// is invalid, unsupported, or not a YouTube URL.
   ParseResult<ExtractedEntity> extract(String inputUrl) {
     Uri uri;
     try {
