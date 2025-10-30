@@ -12,7 +12,10 @@ class YouTubeMetadataClient {
   final Cache<String, ({OEmbedData? oembed, OpenGraphData? openGraph})>? _cache;
   final YouTubeProcessorConfig _config;
 
-  YouTubeMetadataClient({http.Client? httpClient, Cache<String, ({OEmbedData? oembed, OpenGraphData? openGraph})>? cache, YouTubeProcessorConfig config = const YouTubeProcessorConfig()})
+  YouTubeMetadataClient(
+      {http.Client? httpClient,
+      Cache<String, ({OEmbedData? oembed, OpenGraphData? openGraph})>? cache,
+      YouTubeProcessorConfig config = const YouTubeProcessorConfig()})
       : _oembed = YouTubeOEmbedClient(client: httpClient),
         _og = OpenGraphClient(client: httpClient),
         _cache = cache,
@@ -28,7 +31,8 @@ class YouTubeMetadataClient {
     OEmbedData? o;
     if (_config.enableOEmbed) {
       try {
-        o = await _oembed.fetch(url: watch, languageCode: languageCode ?? _config.languageCode);
+        o = await _oembed.fetch(
+            url: watch, languageCode: languageCode ?? _config.languageCode);
       } catch (_) {}
     }
     OpenGraphData? og;
@@ -40,5 +44,3 @@ class YouTubeMetadataClient {
     return result;
   }
 }
-
-

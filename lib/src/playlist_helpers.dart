@@ -13,10 +13,9 @@ Future<PlaylistFetchResult> fetchEntirePlaylist(
 }) async {
   final meta = await api.getPlaylist(playlistId);
   final items = <PlaylistItem>[];
-  await for (final item in api.getPlaylistItems(playlistId, pageSize: pageSize)) {
+  await for (final item
+      in api.getPlaylistItems(playlistId, pageSize: pageSize)) {
     items.add(item);
   }
   return PlaylistFetchResult(metadata: meta, items: items);
 }
-
-

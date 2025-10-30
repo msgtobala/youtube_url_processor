@@ -7,14 +7,16 @@ class _FakeApi implements YouTubeDataApi {
       const ChannelMetadata(id: 'UCx', title: 't', description: 'd');
 
   @override
-  Stream<PlaylistItem> getPlaylistItems(String playlistId, {int pageSize = 50}) async* {
+  Stream<PlaylistItem> getPlaylistItems(String playlistId,
+      {int pageSize = 50}) async* {
     yield const PlaylistItem(videoId: 'v1', title: 'One', index: 0);
     yield const PlaylistItem(videoId: 'v2', title: 'Two', index: 1);
   }
 
   @override
   Future<PlaylistMetadata> getPlaylist(String playlistId) async =>
-      const PlaylistMetadata(id: 'PLx', title: 'Playlist', description: 'Desc', itemCount: 2);
+      const PlaylistMetadata(
+          id: 'PLx', title: 'Playlist', description: 'Desc', itemCount: 2);
 
   @override
   Future<VideoMetadata> getVideo(String videoId) async => const VideoMetadata(
@@ -36,5 +38,3 @@ void main() {
     expect(r.items.last.videoId, 'v2');
   });
 }
-
-

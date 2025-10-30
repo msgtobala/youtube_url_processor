@@ -27,7 +27,9 @@ class OpenGraphClient {
     final body = res.body;
 
     String? meta(String property) {
-      final re = RegExp('<meta[^>]+property=["\']$property["\'][^>]+content=["\']([^"\']+)["\']', caseSensitive: false);
+      final re = RegExp(
+          '<meta[^>]+property=["\']$property["\'][^>]+content=["\']([^"\']+)["\']',
+          caseSensitive: false);
       final m = re.firstMatch(body);
       return m?.group(1);
     }
@@ -48,10 +50,9 @@ class OpenGraphClient {
   }
 
   String? _extractTitle(String html) {
-    final re = RegExp('<title>(.*?)</title>', caseSensitive: false, dotAll: true);
+    final re =
+        RegExp('<title>(.*?)</title>', caseSensitive: false, dotAll: true);
     final m = re.firstMatch(html);
     return m?.group(1)?.trim();
   }
 }
-
-

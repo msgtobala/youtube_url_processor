@@ -30,7 +30,7 @@ class MemoryCache<K, V> implements Cache<K, V> {
       return null;
     }
     return e.value;
-    }
+  }
 
   @override
   void set(K key, V value, {Duration? ttl}) {
@@ -44,5 +44,3 @@ class MemoryCache<K, V> implements Cache<K, V> {
   @override
   void clear() => _store.clear();
 }
-
-

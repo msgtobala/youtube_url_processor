@@ -38,7 +38,8 @@ class YouTubeDataApiV3 implements YouTubeDataApi {
     final content = (it['contentDetails'] as Map<String, dynamic>?);
     final durationIso = content?['duration'] as String?; // ISO8601 duration
     final duration = _parseIsoDuration(durationIso);
-    final lbc = snippet['liveBroadcastContent'] as String?; // none/live/upcoming
+    final lbc =
+        snippet['liveBroadcastContent'] as String?; // none/live/upcoming
     final isLive = lbc == 'live';
     final isUpcoming = lbc == 'upcoming';
     final publishedAt = (snippet['publishedAt'] as String?) != null
@@ -63,7 +64,8 @@ class YouTubeDataApiV3 implements YouTubeDataApi {
       'key': apiKey,
       'id': playlistId,
       'part': 'snippet,contentDetails',
-      'fields': 'items(id,snippet(title,description),contentDetails(itemCount))',
+      'fields':
+          'items(id,snippet(title,description),contentDetails(itemCount))',
       'maxResults': '1',
     });
     final res = await _client.get(uri);
@@ -92,7 +94,8 @@ class YouTubeDataApiV3 implements YouTubeDataApi {
       'key': apiKey,
       'id': channelId,
       'part': 'snippet,statistics',
-      'fields': 'items(id,snippet(title,description),statistics(subscriberCount))',
+      'fields':
+          'items(id,snippet(title,description),statistics(subscriberCount))',
       'maxResults': '1',
     });
     final res = await _client.get(uri);
@@ -116,7 +119,8 @@ class YouTubeDataApiV3 implements YouTubeDataApi {
   }
 
   @override
-  Stream<PlaylistItem> getPlaylistItems(String playlistId, {int pageSize = 50}) async* {
+  Stream<PlaylistItem> getPlaylistItems(String playlistId,
+      {int pageSize = 50}) async* {
     String? pageToken;
     do {
       final uri = Uri.https(_base, '/youtube/v3/playlistItems', {
@@ -135,7 +139,8 @@ class YouTubeDataApiV3 implements YouTubeDataApi {
       final map = json.decode(res.body) as Map<String, dynamic>;
       final items = (map['items'] as List<dynamic>? ?? []);
       for (final raw in items) {
-        final s = (raw as Map<String, dynamic>)['snippet'] as Map<String, dynamic>;
+        final s =
+            (raw as Map<String, dynamic>)['snippet'] as Map<String, dynamic>;
         final rid = s['resourceId'] as Map<String, dynamic>;
         yield PlaylistItem(
           videoId: (rid['videoId'] ?? '') as String,
@@ -159,5 +164,3 @@ class YouTubeDataApiV3 implements YouTubeDataApi {
     return Duration(hours: h, minutes: mm, seconds: s);
   }
 }
-
-

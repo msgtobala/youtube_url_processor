@@ -21,9 +21,8 @@ class YouTubeUrlNormalizer {
       Uri.https('www.youtube.com', '/shorts/$videoId');
 
   static Uri embedUrl(String videoId, {bool privacyEnhanced = false}) {
-    final host = privacyEnhanced
-        ? 'www.youtube-nocookie.com'
-        : 'www.youtube.com';
+    final host =
+        privacyEnhanced ? 'www.youtube-nocookie.com' : 'www.youtube.com';
     return Uri.https(host, '/embed/$videoId');
   }
 

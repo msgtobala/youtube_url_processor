@@ -7,7 +7,8 @@ class _ApiLive implements YouTubeDataApi {
       const ChannelMetadata(id: 'UCx', title: 't', description: 'd');
 
   @override
-  Stream<PlaylistItem> getPlaylistItems(String playlistId, {int pageSize = 50}) async* {}
+  Stream<PlaylistItem> getPlaylistItems(String playlistId,
+      {int pageSize = 50}) async* {}
 
   @override
   Future<PlaylistMetadata> getPlaylist(String playlistId) async =>
@@ -29,10 +30,9 @@ void main() {
   test('YouTubeInspector enriches live flag', () async {
     final api = _ApiLive();
     final inspector = YouTubeInspector(api: api);
-    final info = await inspector.inspectVideo(const VideoRef(videoId: 'v', isLiveCandidate: true, isShort: false));
+    final info = await inspector.inspectVideo(
+        const VideoRef(videoId: 'v', isLiveCandidate: true, isShort: false));
     expect(info.isLive, true);
     expect(info.isUpcoming, false);
   });
 }
-
-

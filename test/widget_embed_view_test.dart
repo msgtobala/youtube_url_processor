@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:youtube_url_processor/youtube_url_processor.dart';
 
 void main() {
-  testWidgets('YouTubeEmbedView invokes builder with proper URL and HTML', (tester) async {
+  testWidgets('YouTubeEmbedView invokes builder with proper URL and HTML',
+      (tester) async {
     Uri? receivedUri;
     String? receivedHtml;
 
@@ -31,5 +32,3 @@ void main() {
     expect(receivedHtml!.contains('iframe'), true);
   });
 }
-
-

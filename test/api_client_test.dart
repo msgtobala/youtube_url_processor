@@ -11,7 +11,8 @@ void main() {
     expect(() => api.getVideo('abc'), throwsA(isA<ApiError>()));
   });
 
-  test('YouTubeDataApiV3 builds correct videos URI and parses response', () async {
+  test('YouTubeDataApiV3 builds correct videos URI and parses response',
+      () async {
     final mock = MockClient((req) async {
       expect(req.url.host, 'www.googleapis.com');
       expect(req.url.path, '/youtube/v3/videos');
@@ -32,7 +33,8 @@ void main() {
           }
         ]
       });
-      return http.Response(body, 200, headers: {'content-type': 'application/json'});
+      return http.Response(body, 200,
+          headers: {'content-type': 'application/json'});
     });
     final client = YouTubeDataApiV3(apiKey: 'x', client: mock);
     final v = await client.getVideo('dQw4w9WgXcQ');
@@ -43,5 +45,3 @@ void main() {
     expect(v.isUpcoming, false);
   });
 }
-
-

@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import '../embed.dart';
 
-typedef YouTubeWebViewBuilder =
-    Widget Function(BuildContext context, Uri embedUri, String iframeHtml);
+typedef YouTubeWebViewBuilder = Widget Function(
+    BuildContext context, Uri embedUri, String iframeHtml);
 
 class YouTubeEmbedView extends StatelessWidget {
   final String videoId;

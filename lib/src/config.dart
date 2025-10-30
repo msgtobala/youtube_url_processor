@@ -17,5 +17,3 @@ class YouTubeProcessorConfig {
     this.cacheTtl = const Duration(minutes: 30),
   });
 }
-
-

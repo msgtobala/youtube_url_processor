@@ -26,22 +26,23 @@ class OEmbedData {
   });
 
   factory OEmbedData.fromJson(Map<String, dynamic> json) => OEmbedData(
-    title: json['title'] ?? '',
-    authorName: json['author_name'] ?? '',
-    authorUrl: json['author_url'] ?? '',
-    thumbnailUrl: json['thumbnail_url'] ?? '',
-    thumbnailWidth: (json['thumbnail_width'] ?? 0) as int,
-    thumbnailHeight: (json['thumbnail_height'] ?? 0) as int,
-    width: (json['width'] ?? 0) as int,
-    height: (json['height'] ?? 0) as int,
-    providerName: json['provider_name'] ?? 'YouTube',
-  );
+        title: json['title'] ?? '',
+        authorName: json['author_name'] ?? '',
+        authorUrl: json['author_url'] ?? '',
+        thumbnailUrl: json['thumbnail_url'] ?? '',
+        thumbnailWidth: (json['thumbnail_width'] ?? 0) as int,
+        thumbnailHeight: (json['thumbnail_height'] ?? 0) as int,
+        width: (json['width'] ?? 0) as int,
+        height: (json['height'] ?? 0) as int,
+        providerName: json['provider_name'] ?? 'YouTube',
+      );
 }
 
 class YouTubeOEmbedClient {
   final http.Client _client;
 
-  YouTubeOEmbedClient({http.Client? client}) : _client = client ?? http.Client();
+  YouTubeOEmbedClient({http.Client? client})
+      : _client = client ?? http.Client();
 
   Future<OEmbedData> fetch({required Uri url, String? languageCode}) async {
     final qp = <String, String>{'url': url.toString(), 'format': 'json'};
