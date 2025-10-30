@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.2] - 2025-10-30
 
+## Fixed
+
+- Format issues with Dart formatting.
+
+## [0.1.2] - 2025-10-30
+
 ### Fixed
 
 - Resolved static analysis lints by adopting Dart super-parameters for error
